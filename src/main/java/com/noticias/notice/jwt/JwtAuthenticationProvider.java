@@ -35,9 +35,11 @@ public class JwtAuthenticationProvider {
 
     public String generateToken(Authentication authentication){
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        logger.info("PRUEBA MILI");
+        logger.info(new Date(new Date().getTime()).toString());
         return Jwts.builder()
                 .subject(userPrincipal.getUsername())
-                .issuedAt(new Date())
+                .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(new Date().getTime() + expiration))
                 .claim("roles",getRoles(userPrincipal))
                 .signWith(getKey(secret))

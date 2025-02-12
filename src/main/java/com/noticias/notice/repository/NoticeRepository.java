@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface NoticeRepository extends JpaRepository<NoticeEntity,Integer> {
     List<NoticeEntity> findByRecommendedTrue();
+    List<NoticeEntity> findByCategory(String category);
 }

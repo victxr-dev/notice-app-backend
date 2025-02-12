@@ -53,7 +53,7 @@ public class UserService {
 
     public MessageDto singUp(SingUpDto dto){
         if(this.userRepository.existsByEmail(dto.getEmail())){
-            new CustomException(HttpStatus.BAD_REQUEST,"user exists");
+            throw new CustomException(HttpStatus.BAD_REQUEST,"user exists");
         }
         UserEntity user = new UserEntity();
         user.setEmail(dto.getEmail());

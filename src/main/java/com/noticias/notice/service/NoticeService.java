@@ -1,5 +1,6 @@
 package com.noticias.notice.service;
 
+import com.noticias.notice.dto.notice.CategoryDto;
 import com.noticias.notice.entity.NoticeEntity;
 import com.noticias.notice.exception.CustomException;
 import com.noticias.notice.repository.NoticeRepository;
@@ -32,5 +33,9 @@ public class NoticeService {
         List<NoticeEntity> allRecommendedNotice = noticeRepository.findByRecommendedTrue();
         Collections.shuffle(allRecommendedNotice);
         return allRecommendedNotice.stream().limit(n).collect(Collectors.toList());
+    }
+
+    public List<NoticeEntity> findCategory(String category){
+        return noticeRepository.findByCategory(category);
     }
 }

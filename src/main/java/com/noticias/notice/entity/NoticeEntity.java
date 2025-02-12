@@ -1,6 +1,10 @@
 package com.noticias.notice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class NoticeEntity {
@@ -9,22 +13,24 @@ public class NoticeEntity {
     private int id;
     private String title;
     private String image;
-    private String description;
     private String category;
+    private String description;
     private boolean recommended;
 
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JsonIgnore
     private UserEntity user;
+
 
     public NoticeEntity() {
     }
 
-    public NoticeEntity(String title, String image, String description, String category, boolean recommended, UserEntity user) {
+    public NoticeEntity(String title, String image, String category, String description, boolean recommended, UserEntity user) {
         this.title = title;
         this.image = image;
-        this.description = description;
         this.category = category;
+        this.description = description;
         this.recommended = recommended;
         this.user = user;
     }
